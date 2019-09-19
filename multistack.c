@@ -70,14 +70,14 @@ printf("NOT EMPTY");
 }
 void isfullA()
 {
-if(topA==topB)
+if(topA==topB-1)
 printf("FULL");
 else 
 printf("NOT FULL");
 }
 void isfullB()
 {
-if(topB-1==topB)
+if(topB-1==topA)
 printf("FULL");
 else 
 printf("NOT FULL");
