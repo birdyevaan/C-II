@@ -1,0 +1,219 @@
+#include<stdio.h>
+int Q[100];
+int DQ[100];
+int CQ[100];
+int front=-1,cfront=-1,dfrontA=-1,dfrontB;
+int n,dn,cn;
+int rear=-1,crear=-1,drearA=-1,drearB;
+void push()
+{
+int t;
+if(rear==n-1)
+printf("QUEUE IS FULL");
+else
+{
+printf("ENTER THE ELEMENT YOU WISH TO ADD");
+scanf("%d",&t);
+if(front==-1)
+front=0;
+rear++;
+Q[rear]=t;
+}
+}
+void cpush()
+{
+int t;
+if((cfront==0&&crear==cn-1)||(crear==(cfront-1)%(cn-1))) 
+    { 
+        printf("\nQUEUE FULL");
+    } 
+
+    else if(cfront==-1)
+    { 
+	printf("ENTER THE ELEMENT YOU WISH TO ADD");
+	scanf("%d",&t);	  
+        front=rear=0; 
+        CQ[crear]=t; 
+    } 
+  
+    else if(crear==cn-1&&cfront!=0) 
+    { 
+	printf("ENTER THE ELEMENT YOU WISH TO ADD");
+	scanf("%d",&t);	  
+        crear=0; 
+        CQ[crear]=t; 
+    } 
+    else
+    {	
+	printf("ENTER THE ELEMENT YOU WISH TO ADD");
+	scanf("%d",&t);	   
+        crear++; 
+        CQ[rear]=t; 
+    } 
+}
+void dpushA()
+{
+int temp;
+if(drearA==drearB-1)
+	printf("QUEUE OVERFLOW");
+else
+{
+	printf("ENTER THE ITEM YOU WISH TO ADD");
+	scanf("%d",&temp);
+	if((dfrontA==drearA)&&(drearA==-1))
+		dfrontA=0;
+	drearA++;
+	DQ[drearA]=temp;
+}
+}
+void dpushB()
+{
+int temp;
+if(drearA==drearB-1)
+	printf("QUEUE OVERFLOW");
+else
+{
+	printf("ENTER THE ITEM YOU WISH TO ADD");
+	scanf("%d",&temp);
+	if((dfrontB==drearB)&&(drearB==n))
+		dfrontB--;
+	drearB--;
+	DQ[drearB]=temp;
+}
+}
+void pop()
+{
+if(front==-1)
+printf("QUEUE IS EMPTY");
+if(front==rear)
+{
+front=-1;
+rear=-1;
+}
+else
+front++;
+}
+void cpop()
+{
+}
+void dpopA()
+{
+if(dfrontA==drearA)
+{	
+printf("QUEUE IS EMPTY");
+
+}
+else
+	dfrontA++;
+}
+void dpopB()
+{
+if(dfrontB==drearB)
+{
+	printf("QUEUE IS EMPTY");
+	
+}
+else
+	dfrontB--;
+}
+
+void display()
+{
+if(rear==-1)
+printf("QUEUE EMPTY");
+else
+{
+for(int i=front;i<=rear;i++)
+{
+printf("%d\t",Q[i]);
+}
+}
+}
+void cdisplay()
+{
+}
+void ddispA()
+{
+for(int i=dfrontA;i<=drearA;i++)
+printf("%d",DQ[i]);
+}
+void ddispB()
+{
+for(int i=drearB;i<dfrontB;i++)
+printf("%d",DQ[i]);
+}
+void main()
+{
+int g=0;
+int u;
+do{
+printf("\n\n\n\n1:LINEAR QUEUE\n2:CIRCULAR QUEUE\n3:DEQUEUE\n4:EXIT");
+scanf("%d",&u);
+if(u==1)
+{
+int c,z=0;
+printf("ENTER THE SIZE OF THE QUEUE");
+scanf("%d",&n);
+do
+{
+printf("\n\n1:ADD AN ELEMENT\n2:DELETE AN ELEMENT\n3:DISPLAY ALL ELEMENTS\n4:EXIT");
+scanf("%d",&c);
+if(c==1)
+push();
+else if(c==2)
+pop();
+else if(c==3)
+display();
+else if(c==4)
+z++;
+}while(z==0);
+}
+else if(u==2)
+{
+int c,z=0;
+printf("ENTER THE SIZE OF THE QUEUE");
+scanf("%d",&cn);
+do
+{
+printf("\n\n1:ADD AN ELEMENT\n2:DELETE AN ELEMENT\n3:DISPLAY ALL ELEMENTS\n4:EXIT");
+scanf("%d",&c);
+if(c==1)
+cpush();
+else if(c==2)
+cpop();
+else if(c==3)
+cdisplay();
+else if(c==4)
+z++;
+}while(z==0);
+}
+else if(u==3)
+{
+int c,z=0;
+printf("ENTER THE SIZE OF THE QUEUE");
+scanf("%d",&dn);
+dfrontB=dn,drearB=dn;
+do
+{
+printf("\n\n1:ADD AN ELEMENT TO FIRST QUEUE\n2:ADD AN ELEMENT TO SECOND QUEUE\n3:DELETE AN ELEMENT FROM FIRST QUEUE\n4:DELETE AN ELEMENT FROM SECOND QUEUE\n5:DISPLAY ELEMENTS OF QUEUE 1\n6:DISPLAY ELEMENTS OF QUEUE 2\n7:EXIT");
+scanf("%d",&c);
+if(c==1)
+dpushA();
+else if(c==2)
+dpushB();
+else if(c==3)
+dpopA();
+else if(c==4)
+dpopB();
+else if(c==5)
+ddispA();
+else if(c==6)
+ddispB();
+else if(c==7)
+z++;
+}while(z==0);
+}
+else if(u==4)
+g++;
+}while(g==0);
+}
