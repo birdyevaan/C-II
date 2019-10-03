@@ -3,7 +3,9 @@ int A[100];
 int topA=-1;
 int topB;
 int t;
-int n;
+int n=100;
+int M;
+int N,P;
 void popA()
 {
 if(topA<0)
@@ -24,7 +26,7 @@ topB++;
 }
 void pushA()
 {
-if(topA==topB-1)
+if(topA==M-1)
 printf("\nSTACK OVERFLOW");
 else
 {
@@ -35,12 +37,13 @@ A[topA]=t;
 }
 void pushB()
 {
-if(topB-1==topA)
+if(P==topB)
 printf("\nSTACK OVERFLOW");
 else
-topB--;
+{topB--;
 scanf("%d",&t);
 A[topB]=t;
+}
 }
 void displayA()
 {
@@ -70,14 +73,14 @@ printf("NOT EMPTY");
 }
 void isfullA()
 {
-if(topA==topB-1)
+if(topA==M-1)
 printf("FULL");
 else 
 printf("NOT FULL");
 }
 void isfullB()
 {
-if(topB-1==topA)
+if(P==topB)
 printf("FULL");
 else 
 printf("NOT FULL");
@@ -94,9 +97,12 @@ void main()
 {
 int u;
 int p=0;
-printf("ENTER SIZE OF ARRAY");
-scanf("%d",&n);
 topB=n;
+printf("ENTER THE SIZE OF FIRST ARRAY");
+scanf("%d",&M);
+printf("ENTER THE SIZE OF SECOND ARRAY");
+scanf("%d",&N);
+P=n-N;
 do
 {
 printf("\n1:POP A\n2:PUSH A\n3.POP B\n4.PUSH B\n5:DISPLAY A\n6:DISPLAY B\n7.PEEP A \n8.PEEP B\n9IS EMPTY A \n10.ISEMPTY B \n11.ISFULL A \n12.ISFULL B\n13. EXIT");
